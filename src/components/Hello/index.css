@@ -1,0 +1,9 @@
+.content{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.content .title{
+  color: red;
+}

@@ -1,5 +1,8 @@
 let path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
+let webpack = require('webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+let extractCss = new ExtractTextPlugin('styles.bundle.css');
 
 
 let paths = {
@@ -15,6 +18,27 @@ let rules = [
     use:[
       'babel-loader'
     ]
+  },
+  {
+    test: /\.css$/,
+    exclude: /node_modules/,
+    use: extractCss.extract({
+      fallback: "style-loader",
+      use: [
+        {
+          loader: "css-loader"
+        },
+        {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                  require('autoprefixer')
+              ]
+            }
+        }
+      ]
+    })
   }
 ]
 
@@ -31,6 +55,8 @@ module.exports={
     new HtmlWebpackPlugin({
       template: path.join(paths.PUBLIC, 'index.html'),
     }),
+    extractCss,
+    new webpack.HotModuleReplacementPlugin()
   ],
   devServer:{
     contentBase: paths.PUBLIC,
