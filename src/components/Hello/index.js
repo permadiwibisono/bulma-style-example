@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './index.css';
+import './index.scss';
 export default class Hello extends Component {
   render() {
     return (

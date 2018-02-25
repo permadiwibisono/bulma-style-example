@@ -29,6 +29,30 @@ let rules = [
     ]
   },
   {
+    test: /\.scss$/,
+    exclude: /node_modules/,
+    use: extractCss.extract({
+      fallback: "style-loader",
+      use: [
+        {
+          loader: "css-loader"
+        },
+        {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: [
+                  require('autoprefixer')
+              ]
+            }
+        },
+        {
+          loader:"sass-loader"
+        }
+      ]
+    })
+  },
+  {
     test: /\.css$/,
     exclude: /node_modules/,
     use: extractCss.extract({
