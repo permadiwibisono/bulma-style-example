@@ -16,7 +16,13 @@ let rules = [
   {test:/\.(eot?.+|ttf?.+|otf?.+|woff?.+|woff2?.+)$/,loader:"file-loader"},
   {test:/\.(png|svg|jpg|gif)$/,loader:"url-loader?limit=10000"},
   {
-    test: /\.(js|jsx)$/,
+    enforce: "pre",
+    test: /\.jsx?$/,
+    exclude: /node_modules/,
+    loader: "eslint-loader",
+  },
+  {
+    test: /\.jsx?$/,
     exclude: /node_modules/,
     use:[
       'babel-loader'
