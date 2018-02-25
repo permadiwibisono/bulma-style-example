@@ -1,5 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Hello from './components/Hello';
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from './components/App';
 
-render(<Hello />, document.getElementById('root'));
+render((
+  <Router>
+    <App/>
+  </Router>
+), document.getElementById('root'));
