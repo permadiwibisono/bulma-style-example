@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const Content = styled.div`
-	flex: 1;
-`
-export default Content
+  flex: 1;
+`;
+export default Content;

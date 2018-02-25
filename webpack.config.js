@@ -1,101 +1,103 @@
-let path = require('path');
-let HtmlWebpackPlugin = require('html-webpack-plugin');
-let webpack = require('webpack');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-let extractCss = new ExtractTextPlugin('styles.bundle.css');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-let paths = {
-  SRC: path.resolve(__dirname,'src'),
-  DIST: path.resolve(__dirname,'dist'),
-  PUBLIC: path.resolve(__dirname,'public')
-}
+const extractCss = new ExtractTextPlugin('styles.bundle.css');
+const autoprefixer = require('autoprefixer');
+
+const paths = {
+  SRC: path.resolve(__dirname, 'src'),
+  DIST: path.resolve(__dirname, 'dist'),
+  PUBLIC: path.resolve(__dirname, 'public'),
+};
 // console.log(paths);
 
-let rules = [
-  {test:/\.json$/,loader:"json-loader"},
-  {test:/\.(eot?.+|ttf?.+|otf?.+|woff?.+|woff2?.+)$/,loader:"file-loader"},
-  {test:/\.(png|svg|jpg|gif)$/,loader:"url-loader?limit=10000"},
+const rules = [
+  { test: /\.json$/, loader: 'json-loader' },
+  { test: /\.(eot?.+|ttf?.+|otf?.+|woff?.+|woff2?.+)$/, loader: 'file-loader' },
+  { test: /\.(png|svg|jpg|gif)$/, loader: 'url-loader?limit=10000' },
   {
-    enforce: "pre",
+    enforce: 'pre',
     test: /\.jsx?$/,
     exclude: /node_modules/,
-    loader: "eslint-loader",
+    loader: 'eslint-loader',
   },
   {
     test: /\.jsx?$/,
     exclude: /node_modules/,
-    use:[
-      'babel-loader'
-    ]
+    use: [
+      'babel-loader',
+    ],
   },
   {
     test: /\.scss$/,
     exclude: /node_modules/,
     use: extractCss.extract({
-      fallback: "style-loader",
+      fallback: 'style-loader',
       use: [
         {
-          loader: "css-loader"
+          loader: 'css-loader',
         },
         {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: [
-                  require('autoprefixer')
-              ]
-            }
+          loader: 'postcss-loader',
+          options: {
+            ident: 'postcss',
+            plugins: [
+              autoprefixer,
+            ],
+          },
         },
         {
-          loader:"sass-loader"
-        }
-      ]
-    })
+          loader: 'sass-loader',
+        },
+      ],
+    }),
   },
   {
     test: /\.css$/,
     exclude: /node_modules/,
     use: extractCss.extract({
-      fallback: "style-loader",
+      fallback: 'style-loader',
       use: [
         {
-          loader: "css-loader"
+          loader: 'css-loader',
         },
         {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: [
-                  require('autoprefixer')
-              ]
-            }
-        }
-      ]
-    })
-  }
-]
+          loader: 'postcss-loader',
+          options: {
+            ident: 'postcss',
+            plugins: [
+              autoprefixer,
+            ],
+          },
+        },
+      ],
+    }),
+  },
+];
 
-module.exports={
+module.exports = {
   entry: path.join(paths.SRC, 'index.js'),
   output: {
     path: paths.DIST,
-    filename:'main.bundle.js'
+    filename: 'main.bundle.js',
   },
-  module:{
-    rules:[...rules]
+  module: {
+    rules: [...rules],
   },
-  plugins:[
+  plugins: [
     new HtmlWebpackPlugin({
       template: path.join(paths.PUBLIC, 'index.html'),
     }),
     extractCss,
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ],
-  devServer:{
+  devServer: {
     contentBase: paths.PUBLIC,
-    port: 8080
+    port: 8080,
   },
   resolve: {
-    extensions: ['.js','.jsx']
-  }
-}
+    extensions: ['.js', '.jsx'],
+  },
+};
