@@ -4,14 +4,17 @@ let webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 let extractCss = new ExtractTextPlugin('styles.bundle.css');
 
-
 let paths = {
   SRC: path.resolve(__dirname,'src'),
   DIST: path.resolve(__dirname,'dist'),
   PUBLIC: path.resolve(__dirname,'public')
 }
-console.log(paths);
+// console.log(paths);
+
 let rules = [
+  {test:/\.json$/,loader:"json-loader"},
+  {test:/\.(eot?.+|ttf?.+|otf?.+|woff?.+|woff2?.+)$/,loader:"file-loader"},
+  {test:/\.(png|svg|jpg|gif)$/,loader:"url-loader?limit=10000"},
   {
     test: /\.(js|jsx)$/,
     exclude: /node_modules/,
