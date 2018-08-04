@@ -23,7 +23,7 @@ const Layout = () => (
       ]}
     />
     <Header />
-    <Content>
+    <Content id="content">
       <Router />
     </Content>
     <Footer />

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Footer = () => (
-  <footer className="footer">
+  <footer className="footer footer__primary">
     <div className="container">
       <div className="content has-text-centered">
         <p>
