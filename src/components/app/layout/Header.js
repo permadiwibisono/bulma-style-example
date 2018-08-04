@@ -18,11 +18,8 @@ class Header extends React.Component {
   render() {
     return (
       <nav
-        className="navbar"
+        className="navbar navbar__primary"
         aria-label="main navigation"
-        style={{
-            borderBottom: 'solid 1px #dddddd',
-          }}
       >
         <div className="navbar-brand">
           <NavLink
@@ -30,7 +27,7 @@ class Header extends React.Component {
             to="/"
             activeClassName="is-active"
           >
-            <span>Waw</span>
+            <span>PW</span>
           </NavLink>
           <button className="button navbar-burger" onClick={this.toggleNav}>
             <span />

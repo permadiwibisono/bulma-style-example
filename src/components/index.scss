@@ -4,11 +4,32 @@
 // 2. Setup your Custom Colors
 $purple: hsl(275,87%,45%);
 $purple-invert: findColorInvert($purple);
+
+$gray: #dddddd;
+$gray-invert: findColorInvert($gray);
 // 3. Add new color variables to the color map.
 @import "node_modules/bulma/sass/utilities/derived-variables.sass";
 $addColors: (
   "purple":($purple, $purple-invert),
+  "gray": ($gray, $gray-invert)
 );
 $colors: map-merge($colors, $addColors);
 
 @import 'node_modules/bulma/bulma';
+@import '~bulma-extensions/dist/css/bulma-extensions.min.css';
+
+.navbar {
+  &__primary{
+    border-bottom: solid 1px $gray;
+  }
+}
+
+#content{
+  background-color: $white-ter;
+}
+
+.footer{
+  &__primary{
+    background-color: $white-ter;
+  }
+}

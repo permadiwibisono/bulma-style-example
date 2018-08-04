@@ -31,7 +31,7 @@ const rules = [
     ],
   },
   {
-    test: /\.scss$/,
+    test: /\.(sass|scss)$/,
     exclude: /node_modules/,
     use: extractCss.extract({
       fallback: 'style-loader',
@@ -78,6 +78,7 @@ const rules = [
 ];
 
 module.exports = {
+  mode: 'development',
   entry: path.join(paths.SRC, 'index.js'),
   output: {
     path: paths.DIST,
