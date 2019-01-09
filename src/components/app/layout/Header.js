@@ -7,6 +7,7 @@ class Header extends React.Component {
     this.state = {
       isActive: false,
     };
+    this.toggleNav = this.toggleNav.bind(this);
   }
 
   toggleNav() {
@@ -47,25 +48,25 @@ class Header extends React.Component {
               </span>
               Code Blog
             </NavLink>
-            <a className="navbar-item">
+            <a href="#" className="navbar-item">
               <span className="icon" style={{ marginRight: 5 }}>
                 <i className="fab fa-lg fa-medium" />
               </span>
               Medium
             </a>
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link" >
+              <a href="#" className="navbar-link" >
                 Projects
               </a>
               <div className="navbar-dropdown">
-                <a className="navbar-item">
+                <a href="#" className="navbar-item">
                   Overview
                 </a>
                 <hr className="navbar-divider" />
-                <a className="navbar-item">
+                <a href="#" className="navbar-item">
                   This Site
                 </a>
-                <a className="navbar-item" >
+                <a href="#" className="navbar-item" >
                   Angular The React Way
                 </a>
               </div>
